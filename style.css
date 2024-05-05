@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=$FONT_NAME&display=swap');
+
+body {
+    background-color: #5f88c7;
+    font-family: '$FONT_NAME', sans-serif;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+}
+
