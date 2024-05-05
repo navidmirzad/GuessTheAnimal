@@ -1,82 +1,135 @@
-"use strict";
+// Import the Node class
+import Node from "./Node.js";
 
-import Tree from "./Tree.js";
+// Root node
+const root = new Node(null, "Is it a predator?");
 
-console.log("script.js is running!");
+// Creating nodes for yes answers
+const node1 = new Node(root, "Does it live in a warm climate?");
+const node2 = new Node(node1, "Is it a lion?");
+const node3 = new Node(node1, "Can it fly?");
+const node4 = new Node(node3, "Is it a snowy owl?");
+const node5 = new Node(node3, "Does it live on land?");
+const node6 = new Node(node5, "Is it a polar bear?");
+const node7 = new Node(node5, "Is it a whale?");
 
-const root = {
-  parent: null,
-  question: "Is it a predator?",
-  correctNode: null,
-  incorrectNode: null,
-};
+// Creating nodes for no answers
+const node8 = new Node(root, "Does it live in the sea?");
+const node9 = new Node(node8, "Is it a turtle?");
+const node10 = new Node(node8, "Is it a zebra?");
 
-const node1 = {
-  parent: root,
-  question: "Does it live in a warm climate?",
-  correctNode: null,
-  incorrectNode: null,
-};
+// Linking nodes
+root.yes = node1;
+root.no = node8;
 
-const node2 = {
-  parent: node1,
-  question: "Is it a lion?",
-  correctNode: null,
-  incorrectNode: null,
-};
+node1.yes = node2;
+node1.no = node3;
 
-const node3 = {
-  parent: node1,
-  question: "Can it fly?",
-  correctNode: null,
-  incorrectNode: null,
-};
+node3.yes = node4;
+node3.no = node5;
 
-const node4 = {
-  parent: node3,
-  question: "Is it a snowy owl?",
-  correctNode: null,
-  incorrectNode: null,
-};
+node5.yes = node6;
+node5.no = node7;
 
-const node5 = {
-  parent: node3,
-  question: "Does it live on land?",
-  correctNode: null,
-  incorrectNode: null,
-};
+node8.yes = node9;
+node8.no = node10;
 
-const node6 = {
-  parent: node5,
-  question: "Is it a whale?",
-  correctNode: null,
-  incorrectNode: null,
-};
 
-const node7 = {
-  parent: node5,
-  question: "Is it a whale?",
-  correctNode: null,
-  incorrectNode: null,
-};
+const tree = [{
+    root: {
+      parent: null,
+      question: "Is it a predator?",
+      yes: node1,
+      no: node8,
+    },
+    node1: {
+      parent: root,
+      question: "Does it live in a warm climate?",
+      yes: node2,
+      no: node3,
+    },
+    node2: {
+      parent: node1,
+      question: "Is it a lion?",
+      yes: null,
+      no: null,
+    },
+    node3: {
+      parent: node1,
+      question: "Can it fly?",
+      yes: node4,
+      no: node5,
+    },
+    node4: {
+      parent: node3,
+      question: "Is it a snowy owl?",
+      yes: null,
+      no: null,
+    },
+    node5: {
+      parent: node3,
+      question: "Does it live on land?",
+      yes: node6,
+      no: node7,
+    },
+    node6: {
+      parent: node5,
+      question: "Is it a polar bear?",
+      yes: null,
+      no: null,
+    },
+    node7: {
+      parent: node5,
+      question: "Is it a whale?",
+      yes: null,
+      no: null,
+    },
+    node8: {
+      parent: root,
+      question: "Does it live in the sea?",
+      yes: node9,
+      no: node10,
+    },
+    node9: {
+      parent: node8,
+      question: "Is it a turtle?",
+      yes: null,
+      no: null,
+    },
+    node10: {
+      parent: node8,
+      question: "Is it a zebra?",
+      yes: null,
+      no: null,
+    },
+}]
 
-const node8 = {
-  parent: root,
-  question: "Does it live in the sea?",
-  correctNode: null,
-  incorrectNode: null,
-};
+function traverseTree(currentNode) {
+  console.log(currentNode.question);
+  const answer = prompt(currentNode.question + " (yes/no)");
+  if (answer === 'yes') {
+      if (currentNode.yes) {
+          traverseTree(currentNode.yes);
+      } else {
+          console.log("The program has guessed the animal!");
+      }
+  } else if (answer === 'no') {
+      if (currentNode.no) {
+          traverseTree(currentNode.no);
+      } else {
+          console.log("The program could not guess the animal.");
+      }
+  } else {
+      console.log("Invalid input. Please answer 'yes' or 'no'.");
+  }
+}
 
-const node9 = {
-  parent: node8,
-  question: "Is it a turtle?",
-  correctNode: null,
-  incorrectNode: null,
-};
+traverseTree(root);
 
-const node10 = {
-  parent: node8,
-  question: "Is it a zebra?",
-  correctNode: null,
-  incorrectNode: null,
-};
+
+const restartButton = document.getElementById("restart");
+restartButton.addEventListener("click", () => {
+  location.reload();
+});
+
+
