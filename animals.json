@@ -1,0 +1,34 @@
+{
+    "question": "Is it a predator?",
+    "yes": {
+      "question": "Does it live in a warm climate?",
+      "yes": {
+        "question": "Is it a lion?"
+      },
+      "no": {
+        "question": "Can it fly?",
+        "yes": {
+          "question": "Is it a snowy owl?"
+        },
+        "no": {
+          "question": "Does it live on land?",
+          "yes": {
+            "question": "Is it a polar bear?"
+          },
+          "no": {
+            "question": "Is it a whale?"
+          }
+        }
+      }
+    },
+    "no": {
+      "question": "Does it live in the sea?",
+      "yes": {
+        "question": "Is it a turtle?"
+      },
+      "no": {
+        "question": "Is it a zebra?"
+      }
+    }
+  }
+  
