@@ -2,7 +2,7 @@
 
 body {
     background-color: #5f88c7;
-    background-image: url('image3.jpg');
+    background-image: url('./images/image3.jpg');
     font-family: '$FONT_NAME', sans-serif;
 }
 
